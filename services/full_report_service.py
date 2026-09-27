@@ -1,20 +1,9 @@
 from fastapi import APIRouter
 import aiohttp
 import asyncio
+from services.config import API_ENDPOINTS, CVE2_ENDPOINT
 
 router = APIRouter()
-
-# Define the individual API endpoints
-API_ENDPOINTS = {
-    "dns": "http://localhost:8000/api/dns/dns/",
-    "whois": "http://localhost:8000/api/whois/whois/",
-    "subdomains": "http://localhost:8000/api/subdomains/subdomains/",
-    "technologies": "http://localhost:8000/api/tech/tech/",
-    "ssl_tls": "http://localhost:8000/api/ssl_tls/ssl_tls/"
-}
-
-# CVE analysis endpoint (uses POST)
-CVE2_ENDPOINT = "http://localhost:8000/api/cve2/process"
 
 async def fetch_api_data(session: aiohttp.ClientSession, key: str, base_url: str, domain: str, recon_data: dict):
     """

@@ -3,6 +3,7 @@ import asyncio
 import time  # Import the time module
 import json  # Import the json module
 import os
+from services.config import API_ENDPOINTS, CVE2_ENDPOINT
 
 # Set your OpenRouter API key and optional header values
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
@@ -14,14 +15,6 @@ HEADERS = {
     "Content-Type": "application/json",
     "HTTP-Referer": "<YOUR_SITE_URL>",  # Optional. Site URL for rankings on openrouter.ai.
     "X-Title": "<YOUR_SITE_NAME>"       # Optional. Site title for rankings on openrouter.ai.
-}
-
-API_ENDPOINTS = {
-    "dns": "http://localhost:8000/api/dns/dns/",
-    "whois": "http://localhost:8000/api/whois/whois/",
-    "subdomains": "http://localhost:8000/api/subdomains/subdomains/",
-    "technologies": "http://localhost:8000/api/tech/tech/",
-    "ssl_tls": "http://localhost:8000/api/ssl_tls/ssl_tls/"
 }
 
 async def fetch_api_data(session, key, base_url, domain, recon_data):
@@ -55,7 +48,7 @@ async def fetch_recon_data(session, domain: str) -> dict:
     await asyncio.gather(*tasks)
 
     # Now we have recon_data["technologies"]
-    cve2_url = "http://localhost:8000/api/cve2/process"
+    cve2_url = CVE2_ENDPOINT
     tech_data = recon_data.get("technologies")
 
     if isinstance(tech_data, dict):

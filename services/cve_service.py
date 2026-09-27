@@ -3,11 +3,11 @@ import re
 from packaging.version import parse, InvalidVersion
 import motor.motor_asyncio
 from typing import Tuple, List, Optional
+from services.config import MONGO_URI
 
 ########################
 # MongoDB Configuration
 ########################
-MONGO_URI = "mongodb://localhost:27017"
 DB_NAME = "cve_db"
 
 mongo_client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
