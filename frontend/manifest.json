@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "RECONNAITY",
+  "version": "1.0",
+  "description": "A web extension to interact with the Passive Recon API.",
+  "icons": {
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "assets/icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "scripts/popup.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/popup.js"]
+    }
+  ]
+}

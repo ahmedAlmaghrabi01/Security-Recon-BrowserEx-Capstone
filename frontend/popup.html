@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECONNAITY</title>
+    <link rel="stylesheet" href="styles/popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <img src="assets/icon.png" alt="Logo" class="logo-icon">
+                <h1>RECONNAITY</h1>
+            </div>
+            <button id="themeToggle" class="btn btn--icon" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun hidden"></i>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Domain Input -->
+            <div class="input-group">
+                <input type="text" id="domainInput" placeholder="Enter domain name...">
+                <button id="getCurrentDomainBtn" class="btn btn--icon" title="Use current tab's domain">
+                    <i class="fas fa-globe"></i>
+                </button>
+            </div>
+
+            <!-- Form Controls -->
+            <div class="form-controls">
+                <div class="form-group">
+                    <label for="modeSelect">Mode</label>
+                    <select id="modeSelect" class="select">
+                        <option value="simple">Simple</option>
+                        <option value="pro">Pro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="processSelect">Process</label>
+                    <select id="processSelect" class="select">
+                        <option value="">Select process</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="formatSelect">Format</label>
+                    <select id="formatSelect" class="select" disabled>
+                        <option value="">Select format</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button id="analyzeBtn" class="btn btn--primary analyze-btn">
+                Analyze</i>
+                <div class="btn-spinner hidden">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </button>
+
+            <!-- Results Container -->
+            <div id="resultsDiv" class="results-container"></div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div id="progressBar" class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <p id="progressText">Analyzing...</p>
+        </div>
+    </div>
+
+    <script src="scripts/popup.js"></script>
+</body>
+</html>
