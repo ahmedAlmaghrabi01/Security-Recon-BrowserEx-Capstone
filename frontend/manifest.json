@@ -21,13 +21,7 @@
       "48": "assets/icon.png"
     }
   },
-  "background": {
-    "service_worker": "scripts/popup.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["scripts/popup.js"]
-    }
-  ]
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
