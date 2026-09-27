@@ -1,15 +1,30 @@
+import os
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import dns, whois, subdomains, tech, cve, bugBounty, defender, excutiveSummary, cve2_router, full_report, ssl_tls
 
-app = FastAPI(title="Passive Recon API")
+app = FastAPI(
+    title="RECONNAITY Passive Recon API",
+    description="Passive security reconnaissance and reporting API.",
+    version="1.0.0",
+)
+
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "ALLOWED_ORIGINS",
+        "http://localhost:8000,http://127.0.0.1:8000",
+    ).split(",")
+    if origin.strip()
+]
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins; restrict this in production
-    allow_credentials=True,
+    allow_origins=allowed_origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -44,4 +59,13 @@ app.include_router(cve2_router.router, prefix="/api/cve2", tags=["CVE2"])
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Passive Recon API"}
+    return {
+        "name": "RECONNAITY Passive Recon API",
+        "status": "ok",
+        "documentation": "/docs",
+    }
+
+
+@app.get("/health", tags=["Health"])
+def health():
+    return {"status": "healthy"}
