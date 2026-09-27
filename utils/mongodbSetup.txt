@@ -1,0 +1,8 @@
+1. if you dont have the 'nvd_data' directory already, then run 'downloadCVE.py'
+2. ensure these setups are working:
+MONGO_URI = "mongodb://localhost:27017/"
+DB_NAME = "cve_db"
+COLLECTION_NAME = "cve"
+DATA_DIR = "originalCodes/nvd_data"
+3. Run 'importFiles.py'
+4. Run 'mappingVendorToProduct.py'

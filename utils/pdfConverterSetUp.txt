@@ -1,0 +1,44 @@
+Set the OPENROUTER_API_KEY environment variable before starting the application.
+---
+
+### **Step 1: Install GTK+ Runtime**
+1. **Download MSYS2 Installer**:
+   - Go to [MSYS2](https://www.msys2.org/) and install it.
+
+2. **Update Package Database**:
+   Open the MSYS2 terminal and run:
+   ```bash
+   pacman -Syu
+   ```
+
+3. **Install GTK3 Dependencies**:
+   ```bash
+   pacman -S mingw-w64-x86_64-gtk3
+   ```
+
+---
+
+### **Step 2: Add GTK to System PATH**
+1. **Locate GTK Installation**:
+   - Default path: `C:\msys64\mingw64\bin`
+
+2. **Add to PATH**:
+   - Right-click **This PC** → **Properties** → **Advanced system settings** → **Environment Variables**.
+   - Under **System Variables**, edit the `Path` variable and add:
+     ```
+     C:\msys64\mingw64\bin
+     ```
+
+---
+
+### **Step 3: Verify Installation**
+Restart your terminal/IDE and run:
+```bash
+python -c "from weasyprint import HTML; HTML('<h1>Test</h1>').write_pdf()"
+```
+If no errors occur, the setup is successful.
+
+---
+
+### **Alternative: Standalone GTK Installer**
+If MSYS2 doesn’t work, use the [GTK3 Runtime Installer](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases).
